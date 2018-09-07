@@ -145,6 +145,7 @@ Let’s move to examples and cover components with tests under described above s
 Take one component from *forms/inputs* directory; let it be DateInput.js, the component for datepicker field.
 
 **Code listing for tested component:** [DateInput.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/forms/inputs/DateInput.js)
+
 **Looks like:**
 
 ![Datepicker animation](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/datepicker.gif)
@@ -367,7 +368,7 @@ export default function rawMarkup(template) {
 
 Do we need to include tests for rawMarkup in spinner component? No, it is a separate utility and it should be tested apart from the spinner. We don’t care how it works; we just need to know that title prop returns correct result.
 
-Clarification: The reason of using dangerouslySetInnerHTML property is the following. Our site is multilingual, for which translations marketing team is responsible. They can translate it simply with combination of words or even decorate with the html tags, like <strong>, <i>, <s> or even slice text with the lists <ol>, <ul>; we don’t know for sure how they translate and decorate the text. We just need to correctly render all this stuff.
+Clarification: The reason of using dangerouslySetInnerHTML property is the following. Our site is multilingual, for which translations marketing team is responsible. They can translate it simply with combination of words or even decorate with the html tags, like `<strong>`, `<i>`, `<s>` or even slice text with the lists `<ol>`, `<ul>`; we don’t know for sure how they translate and decorate the text. We just need to correctly render all this stuff.
 
 I combined two main test cases in one test:
     * return correct custom prop title
