@@ -329,6 +329,7 @@ it('check value is instanceof moment', () => {
 **3. Widgets testing**
 
 For widgets testing, I took spinner component.
+
 **Code listing for tested widget:** [Spinner.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/widgets/Spinner.js)
 
 **Looks like:**
@@ -376,6 +377,7 @@ it('render correctly Spinner component', () => {
     * return correct custom prop title
     * render correctly prop title with html tags
 
+
     ```
     it('check prop title with html tags', () => {
         const props = {
@@ -390,6 +392,7 @@ it('render correctly Spinner component', () => {
 
     * Check that text in subTitle prop renders correctly:
 
+
     ```
     const props = {
             subTitle: 'left 1 minute'
@@ -403,6 +406,7 @@ it('render correctly Spinner component', () => {
 
     * We know that subTitle is optional; that’s why we need to check whether it is not rendered with default props, according to the slicing markup. Just check the number of tags `<p>`:
 
+
     ```
     it('check subTitle is not rendered', () => {
         const SpinnerComponent = mount(<Spinner />);
@@ -412,6 +416,7 @@ it('render correctly Spinner component', () => {
 
 3. Testing prop types:
    * For title prop expected to be string:
+
 
    ```
    it('check prop type for title is string', () => {
@@ -424,6 +429,7 @@ it('render correctly Spinner component', () => {
    ```
 
    * For subTitle prop also expected to be string:
+
 
    ```
    const props = {
@@ -480,7 +486,7 @@ I overview each component separately:
    ```
 
    1.3 Testing props:
-      * Receiving custom class name prop:
+   * Receiving custom class name prop:
 
       ```
       it('render correct class name', () => {
@@ -492,7 +498,7 @@ I overview each component separately:
       });
       ```
 
-      * Receiving custom title prop:
+   * Receiving custom title prop:
 
       ```
       it('render correct title', () => {
@@ -504,7 +510,7 @@ I overview each component separately:
       });
       ```
 
-      * Receiving correct show prop:
+   * Receiving correct show prop:
 
       ```
       it('check prop value', () => {
@@ -517,7 +523,7 @@ I overview each component separately:
       ```
 
    1.4 Testing proptypes:
-      * for show prop
+   * for show prop
 
       ```
       it('check prop type', () => {
@@ -529,7 +535,7 @@ I overview each component separately:
       });
       ```
 
-      * for onHide prop
+   * for onHide prop
 
       ```
       it('render correct onHide prop type', () => {
@@ -541,7 +547,7 @@ I overview each component separately:
       });
       ```
 
-      * for component prop
+   * for component prop
 
       ```
       it('render correct component prop type', () => {
@@ -692,6 +698,7 @@ Let’s code BaseFieldLayout.js; write tests according to instructions above:
     * inputComponent
     * The props provided by redux-form: input and meta objects. Input with property name and meta with properties error and touched:
 
+
     ```
     const defaultProps = {
         meta: {
@@ -725,55 +732,56 @@ Let’s code BaseFieldLayout.js; write tests according to instructions above:
 2. Testing props:
 
 This component has many props. I will show examples of several ones; the rest are tested by analogy.
-    * Ensure `icon` prop is rendered correctly
 
-    ```
-    it('render correctly icon prop', () => {
-        const props = {
-                icon: <span className="icon-exclamation" />
-            },
-            BaseFieldLayoutComponent = mount(<BaseFieldLayout {...props} />);
-            expect(BaseFieldLayoutComponent.find('span').hasClass('icon-exclamation')).toBeTruthy();
+   * Ensure `icon` prop is rendered correctly
+
+   ```
+   it('render correctly icon prop', () => {
+       const props = {
+               icon: <span className="icon-exclamation" />
+           },
+           BaseFieldLayoutComponent = mount(<BaseFieldLayout {...props} />);
+           expect(BaseFieldLayoutComponent.find('span').hasClass('icon-exclamation')).toBeTruthy();
     });
-    ```
+   ```
 
-    * Ensure tooltip content renders next to the label
+   * Ensure tooltip content renders next to the label
 
-    ```
-    const props = {
-            labelTooltipContent: 'tooltip for label'
-        },
-        BaseFieldLayoutComponent = mount(<BaseFieldLayout {...props} />);
+   ```
+   const props = {
+           labelTooltipContent: 'tooltip for label'
+       },
+       BaseFieldLayoutComponent = mount(<BaseFieldLayout {...props} />);
 
-    it('check prop is rendered', () => {
-       expect(BaseFieldLayoutComponent.find('span').hasClass('tooltip-icon')).toBeTruthy();
-    });
-    ```
+   it('check prop is rendered', () => {
+      expect(BaseFieldLayoutComponent.find('span').hasClass('tooltip-icon')).toBeTruthy();
+   });
+   ```
 
-    * Testing `fieldLink` prop
-      * Ensure fieldLink is null by default
+   * Testing `fieldLink` prop
+     * Ensure fieldLink is null by default
 
-      ```
-      it('check prop is null by default', () => {
-          const BaseFieldLayoutComponent = shallow(<BaseFieldLayout />);
-          expect(BaseFieldLayoutComponent.props().fieldLink).toBe(null);
-      });
-      ```
+     ```
+     it('check prop is null by default', () => {
+         const BaseFieldLayoutComponent = shallow(<BaseFieldLayout />);
+         expect(BaseFieldLayoutComponent.props().fieldLink).toBe(null);
+     });
+     ```
 
-      * Ensure fieldLink renders correctly with custom value
+     * Ensure fieldLink renders correctly with custom value
 
-      ```
-      describe('render correctly fieldLink', () => {
-          const props = {
-              fieldLink: <a href="#" />
-          };
+     ```
+     describe('render correctly fieldLink', () => {
+         const props = {
+             fieldLink: <a href="#" />
+         };
 
-          it('check prop is rendered with defined link', () => {
-              const BaseFieldLayoutComponent = mount(<BaseFieldLayout {...props} />);
-              expect(BaseFieldLayoutComponent.contains(props.fieldLink)).toBeTruthy();
-          });
-      });
-      ```
+         it('check prop is rendered with defined link', () => {
+             const BaseFieldLayoutComponent = mount(<BaseFieldLayout {...props} />);
+             expect(BaseFieldLayoutComponent.contains(props.fieldLink)).toBeTruthy();
+         });
+     });
+     ```
 
 3. Testing errors:
 
