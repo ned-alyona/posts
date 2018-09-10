@@ -14,7 +14,7 @@ The article requires that the reader already has knowledge about Jest and Enzyme
 Assume the following case: You need to cover the project codebase with tests, so what should you start with and what should you get at the end of testing? 100% test coverage? It is the indicator to which you should aspire, but in most situations you won’t get it. Why? Because you shouldn’t test all code. We will find out why and what should be left out of tests. Even more, 100% test coverage does not always ensure that the component is fully tested. As well, there is no guarantee it will notify you if something has been changed. Don’t strive for the percentages, avoid writing fake tests, and just try not to lose main component details.
 
 ## 📚 Table of Contents
-* [Define the correct order of components’ testing based on project structure](https://github.com/ned-alyona/posts/tree/master/jest-enzyme-testing/README.md#-correct-order-of-components-testing)
+* [Define the correct order of components’ testing based on project structure](#correct-order-of-components-testing)
 * [Define what should be omitted in test coverage](https://github.com/ned-alyona/posts/tree/master/jest-enzyme-testing/README.md#-define-what-should-be-omitted-in-test-coverage)
 * [How to test with snapshots](https://github.com/ned-alyona/posts/tree/master/jest-enzyme-testing/README.md#-how-to-test-with-snapshots)
 * [Main instructions for component testing](https://github.com/ned-alyona/posts/tree/master/jest-enzyme-testing/README.md#-main-instructions-for-component-testing)
