@@ -14,11 +14,19 @@ The article requires that the reader already has knowledge about Jest and Enzyme
 Assume the following case: You need to cover the project codebase with tests, so what should you start with and what should you get at the end of testing? 100% test coverage? It is the indicator to which you should aspire, but in most situations you won’t get it. Why? Because you shouldn’t test all code. We will find out why and what should be left out of tests. Even more, 100% test coverage does not always ensure that the component is fully tested. As well, there is no guarantee it will notify you if something has been changed. Don’t strive for the percentages, avoid writing fake tests, and just try not to lose main component details.
 
 ## 📚 Table of Contents
-* [Define the correct order of components’ testing based on project structure](#correct-order-of-components-testing)
-* [Define what should be omitted in test coverage](https://github.com/ned-alyona/posts/tree/master/jest-enzyme-testing/README.md#-define-what-should-be-omitted-in-test-coverage)
-* [How to test with snapshots](https://github.com/ned-alyona/posts/tree/master/jest-enzyme-testing/README.md#-how-to-test-with-snapshots)
-* [Main instructions for component testing](https://github.com/ned-alyona/posts/tree/master/jest-enzyme-testing/README.md#-main-instructions-for-component-testing)
-* [Examples of Testing](https://github.com/ned-alyona/posts/tree/master/jest-enzyme-testing/README.md#-examples-of-testing)
+* [Correct order of components’ testing](#correct-order-of-components-testing)
+* [What should be omitted in test coverage](#what-should-be-omitted-in-test-coverage)
+* [How to test with snapshots](#how-to-test-with-snapshots)
+* [Main instructions for component testing](#main-instructions-for-component-testing)
+* [Examples of Testing](#examples-of-testing)
+  * [Testing Datepicker component](#testing-datepicker-component)
+  * [Utility testing (valueToDate)](#utility-testing)
+  * [Widgets testing (Spinner)](#widgets-testing)
+  * [Modals testing (ModalWrapper and ModalTrigger)](#modals-testing)
+    * [ModalWrapper testing](#modal-wrapper-testing)
+    * [ModalTrigger testing](#modal-trigger-testing)
+  * [HOC testing (BaseFieldHOC)](#hoc-testing)
+  * [Form fields testing (BaseFieldLayout)](#fields-testing)
 
 ## <a name="correct-order-of-components-testing"></a>Defining the correct order of components’ testing based on project structure
 
@@ -44,7 +52,7 @@ The final components order (based on our example) will look like this:
 
 Following this order, you increase complexity of the tested components step by step; thus, when it comes to operating with the more complex components, you already know how the smallest ones behave. Don’t take for testing, for example, ‘array’ field, if you are not sure how to test ‘text’ field; don’t take components decorated with redux-form if you haven’t tested ‘form’ field itself. Be consistent in your choices, don’t take the first component that comes into your mind, and switch on logic. Of course, the structure of your project can differ; it can have other directory names or can have additional components, actions, and reducers, but the logic of defining the order for testing the components is the same.
 
-**Let’s define what should be omitted in test coverage:**
+**<a name="what-should-be-omitted-in-test-coverage"></a> Let’s define what should be omitted in test coverage:**
 1. *Third-party libraries.* Don’t test functionality that is taken from another library; you are not responsible for that code. Skip it or imitate implementation if you need it to test your code.
 2. *Constants.* The name speaks for itself. They are not changeable; it is a set of static code that is not intended to vary.
 3. *Inline styles* (if you use them in component). In order to test inline styles, you need to duplicate object with styles in your test; if styles object changes, you must change it in test too. Don’t duplicate component’s code in tests; you will never keep in mind to change it in tests. Moreover, your colleague will never guess about duplication. In most cases, inline styles don’t change component’s behaviour; consequently, they shouldn’t be tested. There can be an exception in case your styles change dynamically.
@@ -56,7 +64,7 @@ So how do you actually write tests? I combine two testing approaches:
 
 Snapshot Testing is a useful testing tool in case you want to be sure user interface hasn’t changed. When facing this testing tool for the first time, questions arise concerning organization and managing snapshots. The principle of work is very simple, but unfortunately it has not been fully described anywhere; on the official website jestjs.io, description of Snapshot Testing work is very poor.
 
-## How to test with snapshots
+## <a name="how-to-test-with-snapshots"></a> How to test with snapshots
 **Step 1**. Write test for the component and in the expect block, use `.toMatchSnapshot()` method that creates `Snapshot` itself.
 
 ```
@@ -121,7 +129,7 @@ Everything is fine when I test a small component without logic, just UI renderin
 
 The answer is “No”. I stick to the approach to combine Snapshot Testing with manually written tests for component logic. The reason is in the component’s states, props, and conditions inside. One snapshot can be generated with one current state or condition of the component. What do you do with the others? Create 5-10 snapshots and store them along with the test? I would say it is not a right way, so don’t practice this technique. Use snapshots for testing UI and manually written tests for testing functionality.
 
-## Main instructions for component testing
+## <a name="main-instructions-for-component-testing"></a>Main instructions for component testing
 
 1. One component should have only one snapshot. If one snapshot fails, most likely the others will fail too, so do not create and store a bunch of unnecessary snapshots clogging the space and confusing developers who will read your tests after you. Of course, there are exceptions when you need to test the behavior of a component in two states; for example, in the state of the component before opening the pop-up and after opening. However, even such variant can always be replaced by this one: the first test stores default state of the component without popup in snapshot, and the second test simulates event and checks the presence of a particular class. In this way, you can easily bypass the creation of several snapshots.
 
@@ -144,11 +152,11 @@ The answer is “No”. I stick to the approach to combine Snapshot Testing with
 
 After you walk through this list of instructions, your component will be covered from 90 to 100%. I leave 10% for special cases that were not described in the article, but can occur in the code.
 
-## Examples of Testing
+## <a name="examples-of-testing"></a>Examples of Testing
 
 Let’s move to examples and cover components with tests under described above structure step by step.
 
-**1. Testing of a component from forms/inputs.**
+**<a name="testing-datepicker-component"></a>1. Testing of a component from forms/inputs.**
 Take one component from *forms/inputs* directory; let it be DateInput.js, the component for datepicker field.
 
 **Code listing for tested component:** [DateInput.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/forms/inputs/DateInput.js)
@@ -276,7 +284,7 @@ it('check the type of value', () => {
 
 *Full tests listing:* [DateInput.test.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/forms/inputs/__tests__/DateInput.test.js)
 
-**2. Utility testing:**
+**<a name="utility-testing"></a>2. Utility testing:**
 
 **Code listing for tested utility:** [valueToDate.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/utils/valueToDate.js)
 
@@ -333,7 +341,7 @@ it('check value is instanceof moment', () => {
 
 *Full tests listing:* [valueToDate.test.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/utils/__tests__/valueToDate.test.js)
 
-**3. Widgets testing**
+**<a name="widgets-testing"></a> 3. Widgets testing**
 
 For widgets testing, I took spinner component.
 
@@ -451,7 +459,7 @@ it('render correctly Spinner component', () => {
 
 *Full tests listing:* [Spinner.test.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/widgets/__tests__/Spinner.test.js)
 
-**4. Modals testing (ModalWrapper.js and ModalTrigger.js)**
+**<a name="modals-testing"></a>4. Modals testing (ModalWrapper.js and ModalTrigger.js)**
 
 **Looks like:**
 
@@ -467,7 +475,7 @@ First of all, I want to explain how modals are organized on our project. We have
 
 I overview each component separately:
 
-**1. Code listing for tested component:** [ModalWrapper.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/modals/ModalWrapper.js)
+**<a name="modal-wrapper-testing"></a>1. Code listing for tested component:** [ModalWrapper.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/modals/ModalWrapper.js)
 
 **Let’s code:**
 
@@ -568,7 +576,7 @@ I overview each component separately:
 
 *Full tests listing:* [ModalWrapper.test.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/modals/__tests__/ModalWrapper.test.js)
 
-**2. Code listing for tested component:** [ModalTrigger.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/modals/ModalTrigger.js)
+**<a name="modal-trigger-testing"></a>2. Code listing for tested component:** [ModalTrigger.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/modals/ModalTrigger.js)
 
 The modal wrapper has covered with test; the second part is to cover modal trigger component.
 Component overview: it is based on the **state `toggled`** that indicates visibility of ModalWrapper. If **`toggled: false`**, the popup is hidden, else visible. Function **open()** opens popup on child element; click event and function **close()** hides popup on button rendered in ModalWrapper.
@@ -631,7 +639,7 @@ Component overview: it is based on the **state `toggled`** that indicates visibi
 
 Now modals are fully tested. One piece of advice for testing the components that are dependent on each other: look through the components first and write test plan, define what you need to test in each component, check test cases for each component, and be sure you don’t repeat the same test case in both components. Carefully analyze possible and optimal variants for test coverage.
 
-**5. HOC testing (Higher-Order Component)**
+**<a name="hoc-testing"></a>5. HOC testing (Higher-Order Component)**
 
 The last two parts (HOC and form’s fields testing) are interconnected. I would like to share with you how to test field layout with its HOC.
 
@@ -693,7 +701,7 @@ That’s all, the HOC is covered. The most complicated part in testing connected
 
 *Full tests listing:* [BaseFieldHOC.test.js](https://github.com/ned-alyona/testing-jest-enzyme/blob/master/shared/hoc/__tests__/BaseFieldHOC.test.js)
 
-**6. Forms/fields testing**
+**<a name="fields-testing"></a>6. Forms/fields testing**
 
 Field HOC has covered with tests and we can move to BaseFieldLayout component.
 
