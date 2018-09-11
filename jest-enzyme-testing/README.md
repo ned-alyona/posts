@@ -32,7 +32,7 @@ Assume the following case: You need to cover the project codebase with tests, so
 
 Let’s discuss this question on the next part of project structure:
 
-![Project structure image](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/project-structure.png)
+![Project structure image](images/project-structure.png)
 
 I took `shared` directory because it is the most important; it consists of the components that are used in several different pages of the project. They are reusable and normally, they are small and not complex. If one or another component fails, it will cause failing in other places. That’s why we should be confident whether they have been written correctly. The structure of this directory is divided into several folders,  each containing components.
 
