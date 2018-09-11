@@ -1,3 +1,3 @@
-theme: jekyll-theme-cayman
+theme: jekyll-theme-minimal
 gem "github-pages", group: :jekyll_plugins
 title: [What and How to Test with Enzyme and Jest. Full Instruction on React Components Testing]
