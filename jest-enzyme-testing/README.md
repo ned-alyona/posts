@@ -36,7 +36,7 @@ Let’s discuss this question on the next part of project structure:
 
 I took `shared` directory because it is the most important; it consists of the components that are used in several different pages of the project. They are reusable and normally, they are small and not complex. If one or another component fails, it will cause failing in other places. That’s why we should be confident whether they have been written correctly. The structure of this directory is divided into several folders,  each containing components.
 
-![Defining queue for Test Coverage image](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/testing-queue.png)
+![Defining queue for Test Coverage image](images/testing-queue.png)
 
 How to define the correct order of component testing in `shared` directory:
 * Always follow the rule *from simple to complex*. Analyze each directory and define which components are `independent` - namely, their rendering doesn’t depend on the other components; they are self-completed and can be used separately as a single unit. From the structure above, it is `inputs` directory in `forms` folder. It contains input components to redux-forms, such as TextInput, SelectInput, CheckboxInput, DateInput, etc.
@@ -48,7 +48,7 @@ How to define the correct order of component testing in `shared` directory:
 
 The final components order (based on our example) will look like this:
 
-![Components order image](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/testing-order.png)
+![Components order image](images/testing-order.png)
 
 Following this order, you increase complexity of the tested components step by step; thus, when it comes to operating with the more complex components, you already know how the smallest ones behave. Don’t take for testing, for example, ‘array’ field, if you are not sure how to test ‘text’ field; don’t take components decorated with redux-form if you haven’t tested ‘form’ field itself. Be consistent in your choices, don’t take the first component that comes into your mind, and switch on logic. Of course, the structure of your project can differ; it can have other directory names or can have additional components, actions, and reducers, but the logic of defining the order for testing the components is the same.
 
@@ -113,7 +113,7 @@ Let us consider two cases:
    * New snapshot is created, it compares with the auto generated snapshot stored in the directory `__snapshots__`
    * Tests failed because snapshot is different
 
-   ![Tests failed animation](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/fail.gif)
+   ![Tests failed animation](images/fail.gif)
 
 2. The component has not changed
 
@@ -121,7 +121,7 @@ Let us consider two cases:
    * New snapshot is created, it compares with the auto generated snapshot stored in the directory `__snapshots__`
    * Tests passed because snapshot is identical
 
-   ![Tests succeeded animation](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/success.gif)
+   ![Tests succeeded animation](images/success.gif)
 
 Everything is fine when I test a small component without logic, just UI rendering, but as practice shows, there are no such components on real projects. If they are, they are in a small amount.
 
@@ -163,7 +163,7 @@ Take one component from *forms/inputs* directory; let it be DateInput.js, the co
 
 **Looks like:**
 
-![Datepicker animation](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/datepicker.gif)
+![Datepicker animation](images/datepicker.gif)
 
 DateInput component uses library react-datepicker, with two utilities: valueToDate (converts value to date) and dateToValue is vice versa, moment package for manipulating with date and PropTypes for checking React props.
 
@@ -349,7 +349,7 @@ For widgets testing, I took spinner component.
 
 **Looks like:**
 
-![Spinner animation](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/spinner.gif)
+![Spinner animation](images/spinner.gif)
 
 Spinner is not required in explanation, as almost all web resources have this component.
 So go to write tests:
@@ -463,7 +463,7 @@ it('render correctly Spinner component', () => {
 
 **Looks like:**
 
-![Spinner animation](https://github.com/ned-alyona/posts/blob/master/jest-enzyme-testing/images/modal.gif)
+![Spinner animation](images/modal.gif)
 
 **How to test modals:**
 
