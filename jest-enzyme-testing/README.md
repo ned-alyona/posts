@@ -1,4 +1,4 @@
-# What and How to Test with Enzyme and Jest. Full Instruction on React Components Testing
+# What and How to Test with Jest and Enzyme. Full Instruction on React Components Testing
 
 Testing React components may be challenging for beginners and experienced developers who have already worked with tests. It may be interesting to compare your own approaches with the ones we use in our project. In order to cover the codebase, you have to know which components must be tested and which code exactly in component should be covered.
 
