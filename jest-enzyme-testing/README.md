@@ -1,3 +1,5 @@
+![Cover image](images/cover.png)
+
 # What and How to Test with Jest and Enzyme. Full Instruction on React Components Testing
 
 Testing React components may be challenging for beginners and experienced developers who have already worked with tests. It may be interesting to compare your own approaches with the ones we use in our project. In order to cover the codebase, you have to know which components must be tested and which code exactly in component should be covered.
@@ -13,7 +15,7 @@ The article requires that the reader already has knowledge about Jest and Enzyme
 
 Assume the following case: You need to cover the project codebase with tests, so what should you start with and what should you get at the end of testing? 100% test coverage? It is the indicator to which you should aspire, but in most situations you won’t get it. Why? Because you shouldn’t test all code. We will find out why and what should be left out of tests. Even more, 100% test coverage does not always ensure that the component is fully tested. As well, there is no guarantee it will notify you if something has been changed. Don’t strive for the percentages, avoid writing fake tests, and just try not to lose main component details.
 
-## 📚 Table of Contents
+## 📚 Table of Contenxts
 * [Correct order of components’ testing](#correct-order-of-components-testing)
 * [What should be omitted in test coverage](#what-should-be-omitted-in-test-coverage)
 * [How to test with snapshots](#how-to-test-with-snapshots)
@@ -817,3 +819,5 @@ it('check if field has error', () => {
 
 ## Bottom Line
 Now you have full guidance on how to perform full coverage testing of components based on project structure. From my own experience, I tried to explain what is necessary to test, in which order, and what you can omit in test coverage. Also, I demonstrated examples of several testing components and spotted the sequence of codebase coverage. I hope that you will find this article useful and will share your response. Thank you for reading.
+
+Originally published on [Django Stars blog](https://djangostars.com/blog/what-and-how-to-test-with-enzyme-and-jest-full-instruction-on-react-component-testing/).
