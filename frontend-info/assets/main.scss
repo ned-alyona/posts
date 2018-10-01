@@ -1,0 +1,82 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import "minima";
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i');
+
+body {
+    font-family: 'Lato', sans-serif;
+    .wrapper {
+        background-color: #fff;
+        max-width: calc(960px - (30px * 2));
+    }
+}
+
+.top-cover {
+    height: 300px;
+    overflow: hidden;
+    background: url('images/top-cover.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    &:before {
+        content: '';
+        background-color: #111;
+        opacity: 0.35;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+.post-link,
+.post-link:visited {
+    color: #252525;
+    &:hover {
+        color: #76bd1d;
+    }
+}
+
+.social-media-list {
+    li {
+        display: inline-block;
+        margin-right: 5px;
+    }
+}
+
+.post-list {
+    margin-bottom: 80px;
+}
+
+.post-list-heading {
+    font-size: 50px;
+}
+
+.site-footer {
+    background-color: #252525;
+    .wrapper {
+        background-color: #252525;
+        .footer-col-wrapper {
+            color: #aaa;
+        }
+        a {
+            color: #aaa;
+            &:hover {
+                color: #fff;
+            }
+        }
+        .p-name {
+            color: #fff;
+        }
+    }
+}
+
+.page-content {
+    padding: 0;
+    .wrapper {
+        padding-top: 30px;
+    }
+}

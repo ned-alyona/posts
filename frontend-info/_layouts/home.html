@@ -1,0 +1,61 @@
+---
+layout: default
+---
+
+
+<div class="top-cover"></div>
+<div class="wrapper">
+  <div class="home">
+    {%- if page.title -%}
+      <h1 class="page-heading">{{ page.title }}</h1>
+    {%- endif -%}
+    {{ content }}
+
+    {%- if site.posts.size > 0 -%}
+      <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+      <ul class="post-list">
+        {%- for post in site.posts -%}
+        <li>
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          <span class="post-meta">{{ post.date | date: date_format }}</span>
+          <h3>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+          {%- if site.show_excerpts -%}
+            {{ post.excerpt }}
+          {%- endif -%}
+        </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    <h2 class="post-list-heading">Presentations</h2>
+    <ul class="post-list">
+      <li>
+        <span class="post-meta">Sep 29, 2018</span>
+        <h3>
+          <a class="post-link" href="https://ned-alyona.github.io/presentations/angular-unit-testing/">
+            Unit Testing in AngularJS with Karma & Jasmine
+          </a>
+        </h3>
+      </li>
+      <li>
+        <span class="post-meta">Sep 29, 2018</span>
+        <h3>
+          <a class="post-link" href="https://ned-alyona.github.io/presentations/reactjs/">
+            React.js basic knowledge
+          </a>
+        </h3>
+      </li>
+      <li>
+        <span class="post-meta">Sep 29, 2018</span>
+        <h3>
+          <a class="post-link" href="https://ned-alyona.github.io/presentations/reactjs-continue/">
+            React.js overview: state ans props, mixins, router
+          </a>
+        </h3>
+      </li>
+    </ul>
+  </div>
+</div>
