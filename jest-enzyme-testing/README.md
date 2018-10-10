@@ -820,4 +820,4 @@ it('check if field has error', () => {
 ## Bottom Line
 Now you have full guidance on how to perform full coverage testing of components based on project structure. From my own experience, I tried to explain what is necessary to test, in which order, and what you can omit in test coverage. Also, I demonstrated examples of several testing components and spotted the sequence of codebase coverage. I hope that you will find this article useful and will share your response. Thank you for reading.
 
-Originally published on [Django Stars blog](https://djangostars.com/blog/what-and-how-to-test-with-enzyme-and-jest-full-instruction-on-react-component-testing/).
+This article about [react components testing](https://djangostars.com/blog/what-and-how-to-test-with-enzyme-and-jest-full-instruction-on-react-component-testing/) is originally published on Django Stars blog.
